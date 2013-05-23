@@ -38,7 +38,7 @@ public class Film extends Item {
 
 	@Override
 	public String toString() {
-		return "Film [genre=" + genre + ", realisateur=" + realisateur
+		return "Film [ " + super.toString() + "genre=" + genre + ", realisateur=" + realisateur
 				+ ", scenariste=" + scenariste + ", duree=" + duree + "]";
 	}
 }

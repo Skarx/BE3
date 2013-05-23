@@ -1,6 +1,5 @@
 package avis;
 
-import java.util.Collection;
 import java.util.LinkedList;
 
 public class Book extends Item {
@@ -40,7 +39,7 @@ public class Book extends Item {
 
 	@Override
 	public String toString() {
-		return "Book [auteur=" + auteur + ", genre=" + genre + ", nbPages="
+		return "Book [ "+ super.toString() + " auteur=" + auteur + ", genre=" + genre + ", nbPages="
 				+ nbPages + "]";
 	}
 }

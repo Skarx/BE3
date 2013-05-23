@@ -37,19 +37,18 @@ public abstract class Item {
 		this.note = note;
 	}
 	public float moyenneCalculation() {
-		float avgMark = 0 ;
+		float[] note = {0,0};
 		  if(review.size()!=0){
-		   avgMark=0;
 		   for(Review rvw:review){
-		    avgMark += rvw.getNote() ;
+			   note[0]+=rvw.getNote()*rvw.getMembre().getKarma();;
+			   note[1]+=rvw.getMembre().getKarma();
 		   }
-		   avgMark = avgMark / review.size() ;
 		  }
-		  return avgMark ;
+		  return  note[0]/note[1];
 	}
 	@Override
 	public String toString() {
-		return "Item [review=" + review + ", note=" + note + ", titre=" + titre
-				+ "]";
+		return  "note=" + note + ", titre=" + titre
+				;
 	}
 }

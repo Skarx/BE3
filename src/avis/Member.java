@@ -22,7 +22,7 @@ public class Member extends Visiteur {
 		this.password = password.trim();
 		this.profil = profil;
 		this.review = new LinkedList<Review>();
-		this.karma =0;
+		this.karma = 2.5f;
 		
 	}
 	public String getPseudo(){
@@ -54,5 +54,8 @@ public class Member extends Visiteur {
 	}
 	public void setMoyenne(float note){
 		this.karma = note;
+	}
+	public float getKarma(){
+		return karma;
 	}
 }

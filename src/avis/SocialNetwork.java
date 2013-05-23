@@ -123,13 +123,10 @@ public class SocialNetwork {
 		if (profil == null) {
 			throw new BadEntry("Saisie du profil incorrecte.");
 		}
-
 		// MEMBERALREADYEXISTS()
 		// Pseudo déjà utilisé
-		for (Member m : lesMembres) {
 			if (exists(pseudo.trim())) {
 				throw new MemberAlreadyExists();
-			}
 		}
 
 		// A J O U T D U M E M B R E
@@ -215,13 +212,7 @@ public class SocialNetwork {
 
 		// NOTMEMEBER()
 		// Le membre n'existe pas en base
-		Member user = null;
-		for (Member m : lesMembres) {
-			if (isMember(pseudo, password)) {
-				user = m;
-				break;
-			}
-		}
+		Member user = isMember(pseudo, password);
 		if (user == null) {
 			throw new NotMember(
 					"Pas de correspondances trouvées entre utilisateurs et mots de passe.");
@@ -315,11 +306,7 @@ public class SocialNetwork {
 		// NOTMEMEBER()
 		// Le membre n'existe pas en base
 		Member user = null;
-		for (Member m : lesMembres) {
-			if (isMember(pseudo, password)) {
-				user = m;
-			}
-		}
+		user = isMember(pseudo, password);
 		if (user == null) {
 			throw new NotMember(
 					"Pas de correspondances trouvées entre utilisateurs et mots de passe.");
@@ -364,7 +351,7 @@ public class SocialNetwork {
 		// C R E A T I O N D E L A L I S T E
 		LinkedList<String> listeRetournee = new LinkedList<String>();
 		for (Item i : lesItems) {
-			if (i.getTitre().equalsIgnoreCase(nom)) {
+			if (i.getTitre().equalsIgnoreCase(nom.trim())) {
 				if (i instanceof Book) {
 					Book j = (Book) i;
 					listeRetournee.add(j.toString());
@@ -444,16 +431,7 @@ public class SocialNetwork {
 
 		// NOTMEMEBER()
 		// Le membre n'existe sur le Social Network
-		Member userAuth = null;
-		if (isMember(pseudo, password)) {
-
-			for (Member m : lesMembres) {
-				if (m.getPseudo() == pseudo) {
-					userAuth = m;
-					break;
-				}
-			}
-		}
+		Member userAuth = isMember(pseudo, password);
 		if (userAuth == null) {
 			throw new NotMember(
 					"Pas de correspondances trouvées entre utilisateurs et mots de passe.");
@@ -566,16 +544,7 @@ public class SocialNetwork {
 
 		// NOTMEMEBER()
 		// Le membre n'existe sur le Social Network
-		Member userAuth = null;
-		if (isMember(pseudo, password)) {
-
-			for (Member m : lesMembres) {
-				if (m.getPseudo() == pseudo) {
-					userAuth = m;
-					break;
-				}
-			}
-		}
+		Member userAuth = isMember(pseudo, password);
 		if (userAuth == null) {
 			throw new NotMember(
 					"Pas de correspondances trouvées entre utilisateurs et mots de passe.");
@@ -634,14 +603,14 @@ public class SocialNetwork {
 		return false;
 	}
 
-	public boolean isMember(String pseudo, String password) {
+	public Member isMember(String pseudo, String password) {
 		for (Member i : lesMembres) {
-			if (i.getPseudo().equalsIgnoreCase(pseudo)
+			if (i.getPseudo().equals(pseudo)
 					&& i.getPassword().equals(password)) {
-				return true;
+				return i;
 			}
 		}
-		return false;
+		return null;
 	}
 
 	public float reviewOpinion(String pseudo, String password, String titre,
@@ -668,15 +637,7 @@ public class SocialNetwork {
 		}
 		// NOTMEMEBER()
 		// Le membre n'existe sur le Social Network
-		Member userAuth = null;
-		if (isMember(pseudo, password)) {
-			for (Member m : lesMembres) {
-				if (m.getPseudo() == pseudo) {
-					userAuth = m;
-					break;
-				}
-			}
-		}
+		Member userAuth = isMember(pseudo, password);
 		if (userAuth == null) {
 			throw new NotMember(
 					"Pas de correspondances trouvées entre utilisateurs et mots de passe.");
