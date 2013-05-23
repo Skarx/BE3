@@ -44,11 +44,11 @@ public class Member extends Visiteur {
 			this.review.add(review);
 	}
 	public float moyenneCalculation() {
-		float avgMark=0 ;
+		float avgMark=2.5f ;
 		   for(Review rvw:review){
 		    avgMark += rvw.getNote() ;
 		   }
-		   avgMark = avgMark / review.size() ;
+		   avgMark = avgMark / review.size()+1 ;
 		  
 		  return avgMark ;
 	}

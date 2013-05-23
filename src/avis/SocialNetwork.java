@@ -673,6 +673,7 @@ public class SocialNetwork {
 				commentaire));
 		float moyenne = userAuth.moyenneCalculation();
 		userAuth.setMoyenne(moyenne);
+		itemRev.setMoyenne(itemRev.moyenneCalculation());
 		return moyenne;
 	}
 
