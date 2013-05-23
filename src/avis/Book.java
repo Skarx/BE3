@@ -3,8 +3,14 @@ package avis;
 import java.util.LinkedList;
 
 /**
- * Créer un nouvel Item de type Book 
- * 
+ * @author JP. Weltzer
+ * @author H. Carron
+ * @date mai - juin 2013
+ */
+
+/**
+ * Représentation des Items de type Book
+ *
  * @param titre
  *              son titre
  * @param genre
@@ -16,6 +22,11 @@ import java.util.LinkedList;
  *
  */
 public class Book extends Item {
+	
+    /**
+     * constructeur de <i>Book</i>
+     *
+     */
 	public Book(String titre, String genre, String auteur, int nbPages) {
 		this.titre = titre.trim();
 		this.genre = genre;
@@ -49,15 +60,14 @@ public class Book extends Item {
 	 * @uml.property name="note"
 	 */
 
-
-	@Override
-	
 	/**
 	 * Obtenir une représentation textuelle d'un <i>Book</i>.
 	 * 
-	 * @return la chaîne de caractères représentation textuelle du
+	 * @return la chaîne de caractères représentation textuelle d'un
 	 *         <i>Book</i>
 	 */
+	
+	@Override
 	public String toString() {
 		return "Book [ "+ super.toString() + " auteur=" + auteur + ", genre=" + genre + ", nbPages="
 				+ nbPages + "]";

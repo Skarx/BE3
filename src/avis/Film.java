@@ -11,8 +11,6 @@ public class Film extends Item {
 	 */
 	
     /**
-     * Créer un nouvel Item de type Livre
-     * 
      * @param titre
      *              son titre
      * @param duree
@@ -23,8 +21,11 @@ public class Film extends Item {
      *              le nom du réalisateur
      * @param scenariste
      *              le nom du scénariste
+     */
+	
+    /**
+     * constructeur de <i>Film</i>
      *
-     * 
      */
 	public Film (String titre, int duree, String genre, String realisateur, String scenariste){
 		this.titre = titre.trim();
@@ -55,13 +56,14 @@ public class Film extends Item {
 	private int duree;
 
 
-	@Override
 	/**
 	 * Obtenir une représentation textuelle d'un <i>Livre</i>.
 	 * 
 	 * @return la chaîne de caractères représentation textuelle du
 	 *         <i>Livre</i>
 	 */
+	
+	@Override
 	public String toString() {
 		return "Film [ " + super.toString() + "genre=" + genre + ", realisateur=" + realisateur
 				+ ", scenariste=" + scenariste + ", duree=" + duree + "]";

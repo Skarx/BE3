@@ -27,9 +27,22 @@ public abstract class Item {
 	protected float note;
 	protected String titre;
 
+	   /**
+     * Obtient le titre de l'Item
+     *
+     * @return le titre
+     */
+	
 	public String getTitre() {
 		return titre;
 	}
+	
+    /**
+     * Renvoi la moyenne de toutes les notes attribuées à un Item.
+     *
+     * @return la moyenne
+     */
+	
 	public float getMoyenne(){
 		return note;
 	}
@@ -37,6 +50,7 @@ public abstract class Item {
 	/**
 	 * Ajoute un avis sur une review
 	 */
+	
 	public void ajoutAvis(Review r){
 		review.add(r);
 	}
@@ -44,15 +58,17 @@ public abstract class Item {
 	/**
 	 * Ajoute (ou met à jour) une moyenne sur un Item
 	 */
+	
 	public void setMoyenne(float note){
 		this.note = note;
 	}
 	
 	/**
-	 * Calcul de la moyenne
+	 * Calcul de la moyenne des notes
 	 * 
 	 * @return la moyenne attribuée à l'Item
 	 */
+	
 	public float moyenneCalculation() {
 		float[] note = {0,0};
 		  if(review.size()!=0){
@@ -63,13 +79,15 @@ public abstract class Item {
 		  }
 		  return  note[0]/note[1];
 	}
-	@Override
+	
 	/**
 	 * Obtenir une représentation textuelle d'un <i>Item</i>.
 	 * 
 	 * @return la chaîne de caractères représentation textuelle d'un
 	 *         <i>Item</i>
 	 */
+	
+	@Override
 	public String toString() {
 		return  "note=" + note + ", titre=" + titre
 				;
