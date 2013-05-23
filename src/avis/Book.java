@@ -1,9 +1,18 @@
 package avis;
 
 import java.util.LinkedList;
+
 /**
- * CLASSE BOOK.
- * @author weltzerjean-philippe
+ * Créer un nouvel Item de type Book 
+ * 
+ * @param titre
+ *              son titre
+ * @param genre
+ *              son genre
+ * @param auteur
+ *              le nom de l'auteur
+ * @param nbPages
+ *              le nombre de pages
  *
  */
 public class Book extends Item {
@@ -42,6 +51,13 @@ public class Book extends Item {
 
 
 	@Override
+	
+	/**
+	 * Obtenir une représentation textuelle d'un <i>Book</i>.
+	 * 
+	 * @return la chaîne de caractères représentation textuelle du
+	 *         <i>Book</i>
+	 */
 	public String toString() {
 		return "Book [ "+ super.toString() + " auteur=" + auteur + ", genre=" + genre + ", nbPages="
 				+ nbPages + "]";
