@@ -9,9 +9,9 @@ public class Review {
 		this.note = note;
 		this.commentaire = commentaire;
 	}
-	public Review(Member memberRev, Member userAuth, float note, String commentaire) {
-		this.memberKarma = memberRev;
+	public Review(Review rev, Member userAuth, float note, String commentaire) {
 		this.member = userAuth;
+		this.rev = rev;
 		this.note = note;
 		this.commentaire = commentaire;
 	}
@@ -21,13 +21,14 @@ public class Review {
 	public Member getMembre() {
 		return member;
 	}
+	
 
 	/**
 	 * @uml.property name="commentaire"
 	 */
 	private String commentaire;
 	private Item item;
-	private Member memberKarma;
+	private Review rev;
 	public Item getItem() {
 		return item;
 	}

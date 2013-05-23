@@ -614,7 +614,7 @@ public class SocialNetwork {
 	}
 
 	public float reviewOpinion(String pseudo, String password, String titre,
-			Member membre, float note, String commentaire) throws BadEntry,
+			String pseudonote, float note, String commentaire) throws BadEntry,
 			NotMember, NotItem {
 
 		if (pseudo == null || pseudo.trim().equals("")
@@ -652,19 +652,24 @@ public class SocialNetwork {
 		}
 		if (itemRev == null) {
 			throw new NotItem(
-					"Pas de correspondances trouvées trouvée avec le titre fournit.");
+					"Pas de correspondances trouvées trouvée avec le titre fourni.");
 		}
 		Member memberRev = null;
+		Review temp =null;
 		LinkedList<Review> lkrev = new LinkedList<Review>(itemRev.getAvis());
 		for (Review rev : lkrev) {
-			if (rev.getMembre().equals(membre))
+			if (rev.getMembre().getPseudo().equalsIgnoreCase(pseudonote.trim())){
 				memberRev = rev.getMembre();
+				temp = rev;
+				break;
+		}
 		}
 		if (memberRev == null) {
 			throw new NotMember(
-					"Pas de correspondances trouvées trouvée avec le membre fournit.");
+					"Pas de correspondances trouvées trouvée avec le membre 'noté' fourni .");
 		}
-		memberRev.updateReviews(new Review(memberRev, userAuth, note,
+		
+		memberRev.updateReviews(new Review(temp, userAuth, note,
 				commentaire));
 		float moyenne = userAuth.moyenneCalculation();
 		userAuth.setMoyenne(moyenne);
