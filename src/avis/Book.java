@@ -1,7 +1,11 @@
 package avis;
 
 import java.util.LinkedList;
-
+/**
+ * CLASSE BOOK.
+ * @author weltzerjean-philippe
+ *
+ */
 public class Book extends Item {
 	public Book(String titre, String genre, String auteur, int nbPages) {
 		this.titre = titre.trim();
