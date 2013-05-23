@@ -1,5 +1,11 @@
 package avis;
 
 public class TestsReviewOpinion {
-A	GSRDNGYK
+	public static void main(String[] args) {
+		maina(null);
+	}
+
+public static void maina(String[] args) {
+	
+}
 }
