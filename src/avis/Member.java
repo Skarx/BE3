@@ -1,13 +1,12 @@
 package avis;
 
-import java.util.Collection;
 import java.util.LinkedList;
 
 public class Member extends Visiteur {
     /**
-     * Obtenir une reprsentation textuelle d'un <i>Member</i>.
+     * Obtenir une reprï¿½sentation textuelle d'un <i>Member</i>.
      *
-     * @return la cha”ne de caractres reprsentation textuelle d'un
+     * @return la chaï¿½ne de caractï¿½res reprï¿½sentation textuelle d'un
      *         <i>Member</i>
      */
 	
@@ -18,7 +17,7 @@ public class Member extends Visiteur {
 				+ "]";
 	}
 
-	private Collection<Review> review;
+	private LinkedList<Review> review;
 	private String pseudo;
 	private String password;
 	private String profil;
@@ -71,17 +70,17 @@ public class Member extends Visiteur {
      * Parcours la liste des reviews :
      * <ul>
      *     <li>
-     *          Si une review est prsente, elle est mise ˆ jour.
+     *          Si une review est prï¿½sente, elle est mise ï¿½ jour.
      *     </li>
      *      <li>
-     *          Si elle ne l'est pas, elle est ajoute.
+     *          Si elle ne l'est pas, elle est ajoutï¿½e.
      *      </li>
      * </ul>
      *
      * @param une_review
      */
 
-	public void updateReviews(Review review){
+	public void updateReviews(Review review){	
 		boolean existingReview = false;
 		for (Review r : this.review) {
 				if (r.getMembre().equals(review.getMembre())) {
@@ -96,27 +95,31 @@ public class Member extends Visiteur {
 	/**
 	 * Calcul de la moyenne du karma
 	 * 
-	 * @return la moyenne attribue au membre
+	 * @return la moyenne attribuï¿½e au membre
 	 */
 	
 	public float moyenneCalculation() {
+		int size = this.review.size();
+		size++;
 		float avgMark=2.5f ;
 		   for(Review rvw:review){
 		    avgMark += rvw.getNote() ;
 		   }
-		   avgMark = avgMark / review.size()+1 ;
-		  
+		   avgMark = (avgMark / (size)) ;
 		  return avgMark ;
 	}
 	
 	/**
-	 * Ajoute (ou met ˆ jour) une moyenne (de karma) sur un membre
+	 * Ajoute (ou met ï¿½ jour) une moyenne (de karma) sur un membre
 	 */
 	
 	public void setMoyenne(float note){
 		this.karma = note;
 	}
 	
+	public LinkedList<Review> getReview(){
+		return review;
+	}
 	/**
 	 * Retourne le karma du membre
 	 * 

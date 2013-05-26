@@ -49,6 +49,11 @@ public class TestSocialNetwork {
 		total[1] += result[1];
 		System.out.println("ConsultItem : " + result[0] + "echec et "
 				+ result[1] + "succes");
+		result = TestsReviewOpinion.maina(test);
+		total[0] += result[0];
+		total[1] += result[1];
+		System.out.println("ReviewOpinion : " + result[0] + "echec et "
+				+ result[1] + "succes");
 		System.out.println("Total des tests : " + total[0] + "echec et "
 				+ total[1] + "succes");
 	}

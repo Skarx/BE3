@@ -642,6 +642,10 @@ public class SocialNetwork {
 			throw new NotMember(
 					"Pas de correspondances trouvées entre utilisateurs et mots de passe.");
 		}
+		if ((pseudonote == null) || (pseudonote.trim().equals(""))
+				|| (pseudonote.trim().length() < 1)) {
+			throw new BadEntry("Saisie du pseudo incorrecte.");
+		}
 		Item itemRev = null;
 		// NOTITEM()
 		// le film n'est pas trouvé dans les items gérés par le SociaNetwork
@@ -671,8 +675,9 @@ public class SocialNetwork {
 		
 		memberRev.updateReviews(new Review(temp, userAuth, note,
 				commentaire));
-		float moyenne = userAuth.moyenneCalculation();
-		userAuth.setMoyenne(moyenne);
+		
+		float moyenne = memberRev.moyenneCalculation();
+		memberRev.setMoyenne(moyenne);
 		itemRev.setMoyenne(itemRev.moyenneCalculation());
 		return moyenne;
 	}
