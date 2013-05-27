@@ -35,16 +35,11 @@ public class Review {
 	public float getNote(){
 		return note;
 	}
+	// Met à jour les les champs de la review
 
 	public void updateFields(float note, String commentaire) {
 		this.commentaire = commentaire;
 		this.note = note;
-	}
-	public float reviewMember(Review review){
-		Member member = review.getMembre();
-		member.updateReviews(review);
-		
-		return note;
 	}
 	@Override
 	public String toString() {

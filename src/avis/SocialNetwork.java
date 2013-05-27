@@ -661,6 +661,7 @@ public class SocialNetwork {
 		Member memberRev = null;
 		Review temp =null;
 		LinkedList<Review> lkrev = new LinkedList<Review>(itemRev.getAvis());
+		/* On cherche le membre noté */
 		for (Review rev : lkrev) {
 			if (rev.getMembre().getPseudo().equalsIgnoreCase(pseudonote.trim())){
 				memberRev = rev.getMembre();
@@ -668,14 +669,15 @@ public class SocialNetwork {
 				break;
 		}
 		}
+		// si il n'existe pas on throw notmember
 		if (memberRev == null) {
 			throw new NotMember(
 					"Pas de correspondances trouvées trouvée avec le membre 'noté' fourni .");
 		}
-		
+		// appel de la méthode updatereview
 		memberRev.updateReviews(new Review(temp, userAuth, note,
 				commentaire));
-		
+		// moyenne + mise à jour
 		float moyenne = memberRev.moyenneCalculation();
 		memberRev.setMoyenne(moyenne);
 		itemRev.setMoyenne(itemRev.moyenneCalculation());

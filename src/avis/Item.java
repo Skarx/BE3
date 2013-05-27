@@ -21,6 +21,7 @@ public abstract class Item {
 	 * @return Returns the avis.
 	 * @uml.property name="avis"
 	 */
+	// return la liste d'avis
 	public LinkedList<Review> getAvis() {
 		return review;
 	}
@@ -38,7 +39,7 @@ public abstract class Item {
 	}
 	
     /**
-     * Renvoi la moyenne de toutes les notes attribues ˆ un Item.
+     * Renvoi la moyenne de toutes les notes attribuï¿½es ï¿½ un Item.
      *
      * @return la moyenne
      */
@@ -56,7 +57,7 @@ public abstract class Item {
 	}
 	
 	/**
-	 * Ajoute (ou met ˆ jour) une moyenne sur un Item
+	 * Ajoute (ou met ï¿½ jour) une moyenne sur un Item
 	 */
 	
 	public void setMoyenne(float note){
@@ -66,7 +67,7 @@ public abstract class Item {
 	/**
 	 * Calcul de la moyenne des notes
 	 * 
-	 * @return la moyenne attribue ˆ l'Item
+	 * @return la moyenne attribuï¿½e ï¿½ l'Item
 	 */
 	
 	public float moyenneCalculation() {
@@ -81,9 +82,9 @@ public abstract class Item {
 	}
 	
 	/**
-	 * Obtenir une reprsentation textuelle d'un <i>Item</i>.
+	 * Obtenir une reprï¿½sentation textuelle d'un <i>Item</i>.
 	 * 
-	 * @return la cha”ne de caractres reprsentation textuelle d'un
+	 * @return la chaï¿½ne de caractï¿½res reprï¿½sentation textuelle d'un
 	 *         <i>Item</i>
 	 */
 	
