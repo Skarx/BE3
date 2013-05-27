@@ -125,8 +125,8 @@ public class SocialNetwork {
 		}
 		// MEMBERALREADYEXISTS()
 		// Pseudo déjà utilisé
-			if (exists(pseudo.trim())) {
-				throw new MemberAlreadyExists();
+		if (exists(pseudo.trim())) {
+			throw new MemberAlreadyExists();
 		}
 
 		// A J O U T D U M E M B R E
@@ -659,15 +659,15 @@ public class SocialNetwork {
 					"Pas de correspondances trouvées trouvée avec le titre fourni.");
 		}
 		Member memberRev = null;
-		Review temp =null;
+		Review temp = null;
 		LinkedList<Review> lkrev = new LinkedList<Review>(itemRev.getAvis());
 		/* On cherche le membre noté */
 		for (Review rev : lkrev) {
-			if (rev.getMembre().getPseudo().equalsIgnoreCase(pseudonote.trim())){
+			if (rev.getMembre().getPseudo().equalsIgnoreCase(pseudonote.trim())) {
 				memberRev = rev.getMembre();
 				temp = rev;
 				break;
-		}
+			}
 		}
 		// si il n'existe pas on throw notmember
 		if (memberRev == null) {
@@ -675,8 +675,7 @@ public class SocialNetwork {
 					"Pas de correspondances trouvées trouvée avec le membre 'noté' fourni .");
 		}
 		// appel de la méthode updatereview
-		memberRev.updateReviews(new Review(temp, userAuth, note,
-				commentaire));
+		memberRev.updateReviews(new Review(temp, userAuth, note, commentaire));
 		// moyenne + mise à jour
 		float moyenne = memberRev.moyenneCalculation();
 		memberRev.setMoyenne(moyenne);
