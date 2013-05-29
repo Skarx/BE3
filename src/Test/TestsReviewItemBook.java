@@ -2,14 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package avis;
+package Test;
 
-import java.util.LinkedList;
 
+
+import avis.SocialNetwork;
 import exception.BadEntry;
-import exception.ItemFilmAlreadyExists;
-import exception.ItemBookAlreadyExists;
-import exception.MemberAlreadyExists;
 import exception.NotItem;
 import exception.NotMember;
 
@@ -30,7 +28,7 @@ public class TestsReviewItemBook {
 		int echec = 0;
 		int test = 0;
 		int nbFilms = 0;
-		int nbBooks = 0;
+
 		int nbMembers = 0;
 		System.out.println("Test review sur un livre");
 
@@ -363,7 +361,6 @@ public class TestsReviewItemBook {
 
 		}
 		// FIN NOUVEAU LIVRE
-		nbBooks = sn.nbBooks();
 		test++;
 		try {
 			moyenne = sn.reviewItemBook("bob", "bob1", "livre" + i, 4.0f, null);

@@ -127,4 +127,6 @@ public class Member extends Visiteur {
 	public float getKarma() {
 		return karma;
 	}
+	
+
 }

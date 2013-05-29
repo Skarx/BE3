@@ -2,6 +2,13 @@ package avis;
 
 
 public class Review {
+
+	private String commentaire;
+	private Item item;
+	private float note = 0;
+	private Member member;
+	private Review rev;
+	
 	public Review(Item itemRev, Member userAuth, float note, String commentaire) {
 		this.item = itemRev;
 		this.member = userAuth;
@@ -15,12 +22,6 @@ public class Review {
 		this.note = note;
 		this.commentaire = commentaire;
 	}
-	private String commentaire;
-	private Item item;
-	private Review rev;
-	private float note = 0;
-	private Member member;
-
 	public Member getMembre() {
 		return member;
 	}

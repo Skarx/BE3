@@ -2,15 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package avis;
+package Test;
 
-import java.util.LinkedList;
 
+
+import avis.SocialNetwork;
 import exception.BadEntry;
-import exception.ItemFilmAlreadyExists;
 import exception.ItemBookAlreadyExists;
-import exception.MemberAlreadyExists;
-import exception.NotItem;
 import exception.NotMember;
 
 /**

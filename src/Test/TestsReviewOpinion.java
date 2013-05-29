@@ -1,5 +1,6 @@
-package avis;
+package Test;
 
+import avis.SocialNetwork;
 import exception.BadEntry;
 import exception.NotItem;
 import exception.NotMember;
@@ -12,7 +13,6 @@ public class TestsReviewOpinion {
 	public static int[] maina(String[] args) {
 		// Initialisation des variables
 		float moyenne = 0.0f;
-		int i = 0;
 		int echec = 0;
 		int test = 0;
 
@@ -38,7 +38,7 @@ public class TestsReviewOpinion {
 		// Tentative d'ajout de review avec un membre non instancié
 		test++;
 		try {
-			moyenne = sn.reviewOpinion(null, "bob3", "L'art de la guerre", "bob1", 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion(null, "bob3", "L'art de la guerre", "bob1", 5f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.1.1 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -59,7 +59,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("            ", "bob3", "L'art de la guerre", "bob1", 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion("            ", "bob3", "L'art de la guerre", "bob1", 5f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.1.2 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -80,7 +80,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("bob36", "bob3", "L'art de la guerre", "bob1", 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob36", "bob3", "L'art de la guerre", "bob1", 5f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.1.3 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -101,7 +101,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("bob3", null, "L'art de la guerre", "bob1", 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob3", null, "L'art de la guerre", "bob1", 5f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.2.1 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -122,7 +122,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("bob3", "       ", "L'art de la guerre", "bob1", 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob3", "       ", "L'art de la guerre", "bob1", 5f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.2.2 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -143,7 +143,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("bob3", "bob4", "L'art de la guerre", "bob1", 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob3", "bob4", "L'art de la guerre", "bob1", 5f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.2.3 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -164,7 +164,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("bob3", "bob3", null, "bob1", 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob3", "bob3", null, "bob1", 5f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.3.1 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -185,7 +185,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("bob3", "bob3", "", "bob1", 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob3", "bob3", "", "bob1", 5f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.3.2 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -206,7 +206,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("bob3", "bob3", "QGBFDHDF", "bob1", 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob3", "bob3", "QGBFDHDF", "bob1", 5f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.3.3 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -227,7 +227,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", null, 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", null, 5f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.4.1 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -248,7 +248,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", "", 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", "", 5f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.4.2 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -269,7 +269,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", "zsegHG", 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", "zsegHG", 5f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.4.3 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -290,7 +290,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", "bob1", -0.2f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", "bob1", -0.2f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.5.1 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -311,7 +311,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", "bob1", 6f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", "bob1", 6f, "Cool story bro", "livre");
 			System.out
 			.println("Erreur 5.5.2 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -332,7 +332,7 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try {
-			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", "bob1", 5f, null);
+			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", "bob1", 5f, null, "livre");
 			System.out
 			.println("Erreur 5.6.1 : Le nombre de reviewOpinion a été modifié (NoCatch)");
 			echec++;
@@ -353,12 +353,12 @@ public class TestsReviewOpinion {
 		}
 		test++;
 		try{
-			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", "bob1", 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob3", "bob3", "L'art de la guerre", "bob1", 5f, "Cool story bro", "livre");
 			if(moyenne != 3.75){
 				echec++;
 				System.out.println("Erreur 5.7, La moyenne est éronnée");
 			}
-			moyenne = sn.reviewOpinion("bob4", "bob4", "L'art de la guerre", "bob1", 5f, "Cool story bro");
+			moyenne = sn.reviewOpinion("bob4", "bob4", "L'art de la guerre", "bob1", 5f, "Cool story bro", "livre");
 			if(moyenne != 4.1666665f){
 				echec++;
 				System.out.println("Erreur 5.7, La moyenne est éronnée");

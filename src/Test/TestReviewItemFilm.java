@@ -1,5 +1,6 @@
-package avis;
+package Test;
 
+import avis.SocialNetwork;
 import exception.BadEntry;
 import exception.NotItem;
 import exception.NotMember;

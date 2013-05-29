@@ -130,8 +130,8 @@ public class SocialNetwork {
 		}
 
 		// A J O U T D U M E M B R E
-		Member nouveauMembre = new Member(pseudo, password, profil);
-		lesMembres.add(nouveauMembre);
+
+		lesMembres.add(new Member(pseudo, password, profil));
 	}
 
 	/**
@@ -217,14 +217,10 @@ public class SocialNetwork {
 			throw new NotMember(
 					"Pas de correspondances trouvées entre utilisateurs et mots de passe.");
 		}
-
 		// ITEMALREADYEXISTS()
 		// Le film existe déja en base (ignore la casse)
-		for (Item i : lesItems) {
-			if ((i instanceof Film)
-					&& (i.getTitre().equalsIgnoreCase(titre.trim()))) {
-				throw new ItemFilmAlreadyExists();
-			}
+		if (isFilm(titre) != null) {
+			throw new ItemFilmAlreadyExists();
 		}
 
 		// A J O U T D U F I L M
@@ -315,11 +311,8 @@ public class SocialNetwork {
 		// ITEMALREADYEXISTS()
 		// Le Livre existe déja en base, ignore la casse et les leading et
 		// trailing spaces
-		for (Item i : lesItems) {
-			if ((i instanceof Book) && (i.getTitre().equalsIgnoreCase(titre))) {
-				throw new ItemBookAlreadyExists();
-			}
-		}
+		if (isBook(titre) != null)
+			throw new ItemBookAlreadyExists();
 
 		// A J O U T D U L I V R E
 		Book nouveau = new Book(titre, genre, auteur, nbPages);
@@ -349,19 +342,8 @@ public class SocialNetwork {
 		}
 
 		// C R E A T I O N D E L A L I S T E
-		LinkedList<String> listeRetournee = new LinkedList<String>();
-		for (Item i : lesItems) {
-			if (i.getTitre().equalsIgnoreCase(nom.trim())) {
-				if (i instanceof Book) {
-					Book j = (Book) i;
-					listeRetournee.add(j.toString());
-				} else {
-					Film j = (Film) i;
-					listeRetournee.add(j.toString());
-				}
-			}
-		}
-		return listeRetournee;
+
+		return recupString(nom);
 	}
 
 	/**
@@ -437,12 +419,7 @@ public class SocialNetwork {
 					"Pas de correspondances trouvées entre utilisateurs et mots de passe.");
 		}
 		// NOTITEM()
-		Film filmRev = null;
-		for (Item i : lesItems) {
-			if ((i instanceof Film) && i.getTitre().equals(titre)) {
-				filmRev = (Film) i;
-			}
-		}
+		Film filmRev = isFilm(titre);
 		if (filmRev == null) {
 			throw new NotItem(
 					"Pas de correspondances trouvées trouvée avec le titre fournit.");
@@ -451,25 +428,17 @@ public class SocialNetwork {
 		// Mise à jour de la review si le membre a déja donné un opinion sur ce
 		// livre
 		// Propagation des changements effectués
-		boolean existingReview = false;
-		LinkedList<Review> lkrev = new LinkedList<Review>(filmRev.getAvis());
-		for (Review i : lkrev) {
-			if (i.getMembre().getPseudo().equals(userAuth.getPseudo())) {
-				existingReview = true;
-				i.updateFields(note, commentaire);
-			}
-		}
+		Review existingReview = isReview(filmRev, userAuth);
 		// CALCUL DE LA MOYENNE RETOURNEE
 		float nvMoyenne = 0;
 		// dans le cadre d'une réécriture d'une review ==>
-		if (existingReview) {
-			nvMoyenne = 0;
+		if (existingReview != null) {
+			existingReview.updateFields(note, commentaire);
 			nvMoyenne = filmRev.moyenneCalculation();
 
 		}
-
 		// MISE A JOUR DES LINKEDLIST DE REVIEWS
-		if (!existingReview) {
+		else {
 			filmRev.ajoutAvis(new Review(filmRev, userAuth, note, commentaire));
 			nvMoyenne = filmRev.moyenneCalculation();
 		}
@@ -551,12 +520,7 @@ public class SocialNetwork {
 		}
 		// NOTITEM()
 		// le book n'est pas trouvé dans les items gérés par le SociaNetwork
-		Book bookRev = null;
-		for (Item i : lesItems) {
-			if ((i instanceof Book) && i.getTitre().equalsIgnoreCase(titre)) {
-				bookRev = (Book) i;
-			}
-		}
+		Book bookRev = isBook(titre);
 		if (bookRev == null) {
 			throw new NotItem(
 					"Pas de correspondances trouvées trouvée avec le titre fournit.");
@@ -565,25 +529,17 @@ public class SocialNetwork {
 		// Mise à jour de la review si le membre a déja donné un opinion sur ce
 		// livre
 		// Propagation des changements effectués
-		boolean existingReview = false;
-		LinkedList<Review> lkrev = new LinkedList<Review>(bookRev.getAvis());
-		for (Review i : lkrev) {
-			if (i.getMembre().getPseudo().equals(userAuth.getPseudo())) {
-				existingReview = true;
-				i.updateFields(note, commentaire);
-			}
-		}
+		Review existingReview = isReview(bookRev, userAuth);
 		// CALCUL DE LA MOYENNE RETOURNEE
 		float nvMoyenne = 0;
 		// dans le cadre d'une réécriture d'une review ==>
-		if (existingReview) {
-			nvMoyenne = 0;
+		if (existingReview != null) {
 			nvMoyenne = bookRev.moyenneCalculation();
 
 		}
 
 		// MISE A JOUR DES LINKEDLIST DE REVIEWS
-		if (!existingReview) {
+		else {
 			bookRev.ajoutAvis(new Review(bookRev, userAuth, note, commentaire));
 			nvMoyenne = bookRev.moyenneCalculation();
 		}
@@ -594,28 +550,9 @@ public class SocialNetwork {
 
 	}
 
-	public boolean exists(String m) {
-		for (Member i : lesMembres) {
-			if (i.getPseudo().equalsIgnoreCase(m.trim())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public Member isMember(String pseudo, String password) {
-		for (Member i : lesMembres) {
-			if (i.getPseudo().equals(pseudo)
-					&& i.getPassword().equals(password)) {
-				return i;
-			}
-		}
-		return null;
-	}
-
 	public float reviewOpinion(String pseudo, String password, String titre,
-			String pseudonote, float note, String commentaire) throws BadEntry,
-			NotMember, NotItem {
+			String pseudonote, float note, String commentaire, String type)
+			throws BadEntry, NotMember, NotItem {
 
 		if (pseudo == null || pseudo.trim().equals("")
 				|| pseudo.trim().length() < 1) {
@@ -646,6 +583,127 @@ public class SocialNetwork {
 				|| (pseudonote.trim().length() < 1)) {
 			throw new BadEntry("Saisie du pseudo incorrecte.");
 		}
+		if (type.trim().equalsIgnoreCase("book")
+				|| type.trim().equalsIgnoreCase("livre"))
+			return reviewOpinionBook(userAuth, titre, pseudonote, note,
+					commentaire);
+		if (type.trim().equalsIgnoreCase("film"))
+			return reviewOpinionFilm(userAuth, titre, pseudonote, note,
+					commentaire);
+		else
+			throw new BadEntry("Saisie du type incorrecte.");
+	}
+
+	private boolean exists(String m) {
+		for (Member i : lesMembres) {
+			if (i.getPseudo().equalsIgnoreCase(m.trim())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private Member isMember(String pseudo, String password) {
+		for (Member i : lesMembres) {
+			if (i.getPseudo().equals(pseudo)
+					&& i.getPassword().equals(password)) {
+				return i;
+			}
+		}
+		return null;
+	}
+
+	private LinkedList<String> recupString(String nom) {
+		LinkedList<String> listeRetournee = new LinkedList<String>();
+		for (Item i : lesItems) {
+			if (i.getTitre().equalsIgnoreCase(nom.trim())) {
+				if (i instanceof Book) {
+					Book j = (Book) i;
+					listeRetournee.add(j.toString());
+				} else {
+					Film j = (Film) i;
+					listeRetournee.add(j.toString());
+				}
+			}
+		}
+		return listeRetournee;
+	}
+
+	private Film isFilm(String titre) {
+		for (Item i : lesItems) {
+			if ((i instanceof Film)
+					&& (i.getTitre().equalsIgnoreCase(titre.trim()))) {
+				return (Film) i;
+			}
+
+		}
+		return null;
+	}
+
+	private Book isBook(String titre) {
+		for (Item i : lesItems) {
+			if ((i instanceof Book)
+					&& (i.getTitre().equalsIgnoreCase(titre.trim()))) {
+				return (Book) i;
+			}
+
+		}
+		return null;
+	}
+
+	private Review isReview(Item item, Member userAuth) {
+		LinkedList<Review> lkrev = new LinkedList<Review>(item.getAvis());
+		for (Review i : lkrev) {
+			if (i.getMembre().getPseudo().equals(userAuth.getPseudo())) {
+				return i;
+			}
+		}
+		return null;
+	}
+
+	private float reviewOpinionBook(Member userAuth, String titre,
+			String pseudonote, float note, String commentaire) throws NotItem,
+			NotMember {
+		Item itemRev = null;
+		// NOTITEM()
+		// le film n'est pas trouvé dans les items gérés par le SociaNetwork
+		for (Item i : lesItems) {
+			if (i.getTitre().equals(titre)) {
+				itemRev = i;
+			}
+		}
+		if (itemRev == null) {
+			throw new NotItem(
+					"Pas de correspondances trouvées trouvée avec le titre fourni.");
+		}
+		Member memberRev = null;
+		Review temp = null;
+		LinkedList<Review> lkrev = new LinkedList<Review>(itemRev.getAvis());
+		/* On cherche le membre noté */
+		for (Review rev : lkrev) {
+			if (rev.getMembre().getPseudo().equalsIgnoreCase(pseudonote.trim())) {
+				memberRev = rev.getMembre();
+				temp = rev;
+				break;
+			}
+		}
+		// si il n'existe pas on throw notmember
+		if (memberRev == null) {
+			throw new NotMember(
+					"Pas de correspondances trouvées trouvée avec le membre 'noté' fourni .");
+		}
+		// appel de la méthode updatereview
+		memberRev.updateReviews(new Review(temp, userAuth, note, commentaire));
+		// moyenne + mise à jour
+		float moyenne = memberRev.moyenneCalculation();
+		memberRev.setMoyenne(moyenne);
+		itemRev.setMoyenne(itemRev.moyenneCalculation());
+		return moyenne;
+	}
+
+	private float reviewOpinionFilm(Member userAuth, String titre,
+			String pseudonote, float note, String commentaire) throws NotItem,
+			NotMember {
 		Item itemRev = null;
 		// NOTITEM()
 		// le film n'est pas trouvé dans les items gérés par le SociaNetwork

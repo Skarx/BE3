@@ -1,6 +1,8 @@
-package avis;
+package Test;
 
 import java.util.LinkedList;
+
+import avis.SocialNetwork;
 
 import exception.BadEntry;
 
