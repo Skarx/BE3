@@ -36,9 +36,9 @@ public class TestRendement {
 
 		}
 		// ADD BOOK
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 5000; i++) {
 			try {
-				sn.addItemBook("bob" + i, "bob" + i, "livre" + i, "bob", "bob",
+				sn.addItemBook("bob499", "bob499", "livre" + i, "bob", "bob",
 						42);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -46,18 +46,18 @@ public class TestRendement {
 			}
 		}
 		// ADD FILM
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 5000; i++) {
 			try {
-				sn.addItemFilm("bob" + i, "bob" + i, "Film" + i, "Action",
+				sn.addItemFilm("bob499", "bob499", "Film" + i, "Action",
 						"Guy Ritchie", "unScenariste", 543);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		// REVIEW BOOK
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 5000; i++) {
 			try {
-				sn.reviewItemBook("bob" + i, "bob" + i, "livre" + i, 4.0f,
+				sn.reviewItemBook("bob499", "bob499", "livre" + i, 4.0f,
 						"bob");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -65,25 +65,25 @@ public class TestRendement {
 			}
 		}
 		// REVIEW FILM
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 5000; i++) {
 			try {
-				sn.reviewItemFilm("bob" + i, "bob" + i, "Film" + i, 4.0f, "bob");
+				sn.reviewItemFilm("bob499", "bob499", "Film" + i, 4.0f, "bob");
 			} catch (Exception e) {
 				e.printStackTrace();
 
 			}
 		}
 		// REVIEW OPINION BOOK
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 5000; i++) {
 			try {
-				sn.reviewOpinion("bob" + i, "bob" + i, "livre499", "bob499",
+				sn.reviewOpinion("bob499", "bob499", "livre499", "bob499",
 						5f, "Cool story bro", "livre");
 			} catch (Exception e) {
 				e.printStackTrace();
 
 			}
 		}
-		int i = 500;
+		int i = 5000;
 		// /////////////////////////////////////////////////////////////////////////////////////////////////
 		// /////////////////////////////////////////////////////////////////////////////////////////////////
 		// /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ public class TestRendement {
 		// /////////////////////////////////////////////////////////////////////////////////////////////////
 		debutAddMember = System.nanoTime();
 		try {
-			sn.addMember("bob" + i, "bob" + i, "bob" + i);
+			sn.addMember("bob500", "bob500", "bob" + i);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -103,7 +103,7 @@ public class TestRendement {
 		// /////////////////////////////////////////////////////////////////////////////////////////////////
 		debutAddBook = System.nanoTime();
 		try {
-			sn.addItemBook("bob" + i, "bob" + i, "livre" + i, "bob", "bob", 42);
+			sn.addItemBook("bob500", "bob500", "livre" + i, "bob", "bob", 42);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -115,7 +115,7 @@ public class TestRendement {
 		// /////////////////////////////////////////////////////////////////////////////////////////////////
 		debutAddFilm = System.nanoTime();
 		try {
-			sn.addItemFilm("bob" + i, "bob" + i, "Film" + i, "Action",
+			sn.addItemFilm("bob500", "bob500", "Film" + i, "Action",
 					"Guy Ritchie", "unScenariste", 543);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -128,7 +128,7 @@ public class TestRendement {
 		// /////////////////////////////////////////////////////////////////////////////////////////////////
 		debutAddReviewBook = System.nanoTime();
 		try {
-			sn.reviewItemBook("bob" + i, "bob" + i, "livre" + i, 4.0f, "bob");
+			sn.reviewItemBook("bob500", "bob500", "livre" + i, 4.0f, "bob");
 		} catch (Exception e) {
 			System.out
 					.println("Erreur 3.13 Exception non prévue sur utilisation normale"
@@ -143,7 +143,7 @@ public class TestRendement {
 		// /////////////////////////////////////////////////////////////////////////////////////////////////
 		debutAddReviewFilm = System.nanoTime();
 		try {
-			sn.reviewItemFilm("bob" + i, "bob" + i, "Film" + i, 4.0f, "bob");
+			sn.reviewItemFilm("bob500", "bob500", "Film" + i, 4.0f, "bob");
 		} catch (Exception e) {
 			System.out
 					.println("Erreur 3.13 Exception non prévue sur utilisation normale"
@@ -170,7 +170,7 @@ public class TestRendement {
 		// /////////////////////////////////////////////////////////////////////////////////////////////////
 		debutReviewOpinion = System.nanoTime();
 		try {
-			sn.reviewOpinion("bob" + i, "bob" + i, "livre500", "bob500", 5f,
+			sn.reviewOpinion("bob500", "bob500", "livre4999", "bob499", 5f,
 					"Cool story bro", "livre");
 		} catch (Exception e) {
 			e.printStackTrace();
